@@ -1,0 +1,11 @@
+source/node_modules
+source/public/hot
+source/public/storage
+source/storage/*.key
+source/vendor
+source/.idea
+source/.vagrant
+sourceHomestead.json
+sourceHomestead.yaml
+sourcenpm-debug.log
+
