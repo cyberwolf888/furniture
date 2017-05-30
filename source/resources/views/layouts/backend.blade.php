@@ -134,24 +134,30 @@
                 </div>
             </div>
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                <li class="no-padding active"><a class="waves-effect waves-grey" href="{{ route('backend.dashboard') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('backend.category.manage') }}"><i class="material-icons">view_column</i>Category</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="#"><i class="material-icons">store</i>Product</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="#"><i class="material-icons">shopping_cart</i>Transaction</a></li>
-                <li class="no-padding">
+                <li class="no-padding @if (str_is('*.dashboard', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.dashboard') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+                @can('admin-access')
+                <li class="no-padding @if (str_is('*.category.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.category.manage') }}"><i class="material-icons">view_column</i>Category</a></li>
+                <li class="no-padding @if (str_is('*.product.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.product.manage') }}"><i class="material-icons">store</i>Product</a></li>
+                @endcan
+                <li class="no-padding @if (str_is('*.transaction.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="#"><i class="material-icons">shopping_cart</i>Transaction</a></li>
+                <li class="no-padding @if (str_is('*.user.*', Route::currentRouteName()))collaps active @endif">
                     <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">perm_identity</i>Users<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
                     <div class="collapsible-body">
                         <ul>
-                            <li><a href="#">Member</a></li>
-                            <li><a href="#">Admin</a></li>
+                            @can('owner-access')
+                            <li><a href="{{ route('backend.user.owner.manage') }}">Owner</a></li>
+                            <li><a href="{{ route('backend.user.admin.manage') }}">Admin</a></li>
+                            @endcan
+
+                            @can('admin-access')
+                            <li><a href="{{ route('backend.user.member.manage') }}">Member</a></li>
+                            @endcan
                         </ul>
                     </div>
                 </li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="#"><i class="material-icons">assessment</i>Report</a></li>
-                <li class="no-padding"><a class="waves-effect waves-grey" href="#"><i class="material-icons">rss_feed</i>Promotion</a></li>
-                <li class="no-padding">
-                    <a class="waves-effect waves-grey" href="#"><i class="material-icons">account_circle</i>Profile</a>
-                </li>
+                <li class="no-padding @if (str_is('*.report.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="#"><i class="material-icons">assessment</i>Report</a></li>
+                <li class="no-padding @if (str_is('*.promotion.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.promotion.index') }}"><i class="material-icons">rss_feed</i>Promotion</a></li>
+                <li class="no-padding @if (str_is('*.profile.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.profile.index') }}"><i class="material-icons">account_circle</i>Profile</a></li>
                 <li class="no-padding">
                     <a class="waves-effect waves-grey" href="{{ url('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="material-icons">exit_to_app</i>Sign Out
@@ -162,7 +168,7 @@
                 </li>
             </ul>
             <div class="footer">
-                <p class="copyright">Bedebah Dev ©</p>
+                <p class="copyright">STIKOM Bali ©</p>
                 <a href="#!">Privacy</a> &amp; <a href="#!">Terms</a>
             </div>
         </div>

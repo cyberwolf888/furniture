@@ -36,4 +36,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated($request, $user)
+    {
+        if($user->isActive == 0){
+            $this->logout($request);
+        }
+
+        if($user->can('admin-access') || $user->can('owner-access')) {
+            return redirect()->intended('/backend');
+        }
+
+        if($user->can('member-access')) {
+            return redirect()->intended('/member');
+        }
+
+        return redirect()->intended('/');
+    }
 }
