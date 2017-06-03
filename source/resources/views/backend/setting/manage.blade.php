@@ -9,21 +9,19 @@
     <main class="mn-inner">
         <div class="row">
             <div class="col s12">
-                <div class="page-title">Product</div>
+                <div class="page-title">Setting</div>
             </div>
             <div class="col s12 m12 l12">
                 <div class="card">
                     <div class="card-content">
-                        <span class="card-title">Manage Product</span>
-                        <a class="waves-effect waves-light btn" href="{{ url(route('backend.product.create')) }}"><i class="material-icons left">open_in_new</i>Add New Data</a><br>
+                        <span class="card-title">Manage Setting</span>
+                        <a class="waves-effect waves-light btn" href="{{ url(route('backend.setting.create')) }}"><i class="material-icons left">open_in_new</i>Add New Data</a><br>
                         <table id="example" class="display responsive-table datatable-example">
                             <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Available</th>
+                                <th>Type</th>
+                                <th>Value</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -31,9 +29,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Name</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Available</th>
+                                <th>Created At</th>
                                 <th>Action</th>
                             </tr>
                             </tfoot>
@@ -42,17 +38,14 @@
                             @foreach($model as $row)
                                 <tr>
                                     <td>{{ $no }}</td>
-                                    <td>{{ $row->name }}</td>
-                                    <td>Rp. {{ number_format($row->price,0,',','.') }}</td>
-                                    <td>{{ $row->discount }} %</td>
-                                    <td>{{ $row->available == 1 ? 'Yes':'No' }}</td>
+                                    <td>{{ $row->type }}</td>
+                                    <td>{{ $row->value }}</td>
                                     <td>
-                                        <a href="{{ url(route('backend.product.show', ['id' => $row->id])) }}" class="btn-floating blue" style="opacity: 1;"><i class="material-icons">subject</i></a>
-                                        <a href="{{ url(route('backend.product.edit', ['id' => $row->id])) }}" class="btn-floating orange" style="opacity: 1;"><i class="material-icons">mode_edit</i></a>
-                                        <a href="{{ url(route('backend.product.gallery.manage', ['id' => $row->id])) }}" class="btn-floating green" style="opacity: 1;"><i class="material-icons">perm_media</i></a>
+                                        <a href="{{ route('backend.setting.edit', ['id' => $row->id]) }}" class="btn-floating orange" style="opacity: 1;"><i class="material-icons">mode_edit</i></a>
+                                        <a href="{{ route('backend.setting.delete', ['id' => $row->id]) }}" class="btn-floating red" style="opacity: 1;"><i class="material-icons">clear</i></a>
                                     </td>
                                 </tr>
-                                <?php $no++; ?>
+                            <?php $no++; ?>
                             @endforeach
                             </tbody>
                         </table>

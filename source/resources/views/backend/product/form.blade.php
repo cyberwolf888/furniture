@@ -87,7 +87,7 @@
                                     <div class="row">
                                         <div class="input-field col s5">
                                             <i class="material-icons prefix">delete</i>
-                                            {!! Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material']) !!}
+                                            {!! Form::select('label[]', \App\Models\Setting::where('type','product_detail')->pluck('value','value')) !!}
                                             {!! Form::label('label[]', 'Label') !!}
                                         </div>
                                         <div class="input-field col s7">
@@ -109,7 +109,7 @@
                                     <div class="row">
                                         <div class="input-field col s5">
                                             <i class="material-icons prefix remove_field">delete</i>
-                                            {!! Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material'], $detail->label) !!}
+                                            {!! Form::select('label[]', \App\Models\Setting::where('type','product_detail')->pluck('value','value'), $detail->label) !!}
                                             {!! Form::label('label[]', 'Label') !!}
                                         </div>
                                         <div class="input-field col s7">
@@ -152,7 +152,7 @@
                 $(wrapper).append('<div class="row">' +
                         '<div class="input-field col s5">' +
                         '<i class="material-icons prefix remove_field">delete</i>' +
-                        '<?php echo Form::select('label[]', ['Size'=>'Size','Color'=>'Color','Material'=>'Material']); ?>' +
+                        '<?php echo Form::select('label[]', \App\Models\Setting::where('type','product_detail')->pluck('value','value')); ?>' +
                         '<?php echo Form::label('label[]', 'Label'); ?>' +
                         '</div> ' +
                         '<div class="input-field col s7">' +

@@ -98,6 +98,16 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','role:admin-access|
         Route::get('/delete/{id}', 'Backend\PromotionController@delete')->name('.delete');
     });
 
+    //Setting
+    Route::group(['prefix' => 'setting', 'as'=>'.setting'], function() {
+        Route::get('/', 'Backend\SettingController@index')->name('.manage');
+        Route::get('/create', 'Backend\SettingController@create')->name('.create');
+        Route::post('/create', 'Backend\SettingController@store')->name('.store');
+        Route::get('/edit/{id}', 'Backend\SettingController@edit')->name('.edit');
+        Route::post('/edit/{id}', 'Backend\SettingController@update')->name('.update');
+        Route::get('/delete/{id}', 'Backend\SettingController@destroy')->name('.delete');
+    });
+
     //Profile
     Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {
         Route::get('/', 'Backend\ProfileController@index')->name('.index');
