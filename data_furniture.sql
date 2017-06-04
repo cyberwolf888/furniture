@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 31 Mei 2017 pada 03.09
+-- Generation Time: 04 Jun 2017 pada 11.38
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -98,7 +98,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `available`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Meja Belajar', 'Meja paling awesome yang pernah ada di muka bumi', 700000, 0, '1', '1', '2017-05-27 21:58:12', '2017-05-27 21:58:12');
+(1, 1, 'Meja Belajar', 'Meja paling awesome yang pernah ada di muka bumi', 700000, 0, '0', '1', '2017-05-27 21:58:12', '2017-05-27 21:58:12'),
+(2, 1, 'Kusi Pintar', 'Kursi yang membantu untuk belajar menjadi lebih pintar', 500000, 10, '1', '1', '2017-06-02 18:31:24', '2017-06-02 18:31:24');
 
 -- --------------------------------------------------------
 
@@ -122,7 +123,10 @@ CREATE TABLE `product_detail` (
 INSERT INTO `product_detail` (`id`, `product_id`, `label`, `value`, `created_at`, `updated_at`) VALUES
 (3, 1, 'Color', 'Hitam', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
 (4, 1, 'Material', 'Kayu Jati', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
-(5, 1, 'Size', 'L', '2017-05-27 22:09:46', '2017-05-27 22:09:46');
+(5, 1, 'Size', 'L', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
+(6, 2, 'Material', 'Kayu', '2017-06-02 18:31:24', '2017-06-02 18:31:24'),
+(7, 2, 'Color', 'Hitam', '2017-06-02 18:31:24', '2017-06-02 18:31:24'),
+(8, 2, 'Weight', '10', '2017-06-02 18:31:24', '2017-06-02 18:31:24');
 
 -- --------------------------------------------------------
 
@@ -143,7 +147,33 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
-(3, 1, 'ce98b2bc7db965a417b0ec03c932ac72.jpg', '2017-05-27 22:03:41', '2017-05-27 22:03:41');
+(8, 2, 'dc36bdafafc1a38b982df60e280fa4aa.jpg', '2017-06-02 18:38:36', '2017-06-02 18:38:36'),
+(9, 2, 'dae0adc7fc3ec23d0465787f1ddbda05.jpg', '2017-06-02 18:38:46', '2017-06-02 18:38:46'),
+(10, 1, 'db2f2b22a645dd2570e6756f88174dc8.jpg', '2017-06-02 18:48:37', '2017-06-02 18:48:37');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `setting`
+--
+
+CREATE TABLE `setting` (
+  `id` int(11) NOT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  `value` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `setting`
+--
+
+INSERT INTO `setting` (`id`, `type`, `value`, `created_at`, `updated_at`) VALUES
+(1, 'ongkir', '16000', '2017-06-02 18:18:52', '2017-06-02 18:18:52'),
+(2, 'product_detail', 'Material', '2017-06-02 18:19:13', '2017-06-02 18:23:42'),
+(3, 'product_detail', 'Color', '2017-06-02 18:19:27', '2017-06-02 18:23:34'),
+(4, 'product_detail', 'Weight', '2017-06-02 18:20:11', '2017-06-02 18:23:26');
 
 -- --------------------------------------------------------
 
@@ -251,6 +281,12 @@ ALTER TABLE `product_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subscribe`
 --
 ALTER TABLE `subscribe`
@@ -292,17 +328,22 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `setting`
+--
+ALTER TABLE `setting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --

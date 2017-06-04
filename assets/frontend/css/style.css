@@ -3908,7 +3908,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .newsletter-form{}
 /* Lewsletter Form */
 .newsletter-form .mc-form{}
-.newsletter-form .mc-form input[type="email"] {
+.newsletter-form .mc-form input[type="text"] {
   background-color: transparent;
   border-color: #fff;
   border-style: solid;

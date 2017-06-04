@@ -6,6 +6,7 @@
     <title>D&G Furniture</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -198,38 +199,29 @@
             </div>
             <!-- Mini Cart -->
             <div class="mini-cart-wrapper mini-cart-wrapper-1 float-right">
-                <a href="#" data-toggle="dropdown" class="mini-cart-btn"><span><i class="zmdi zmdi-shopping-cart"></i><span class="cart-number">2</span></span></a>
+                <a href="#" data-toggle="dropdown" class="mini-cart-btn"><span><i class="zmdi zmdi-shopping-cart"></i><span class="cart-number">{{ \Cart::instance('cart')->count() }}</span></span></a>
                 <div class="mini-cart dropdown-menu right">
-                    <div class="mini-cart-product fix">
-                        <a href="#" class="image"><img src="{{ url('assets/frontend') }}/img/mini-cart/1.jpg" alt="" /></a>
-                        <div class="content fix">
-                            <a href="#" class="title">wooden furniture</a>
-                            <p>Color: Black</p>
-                            <p>Size: SL</p>
-                            <button class="remove"><i class="zmdi zmdi-close"></i></button>
+                    @if(\Cart::instance('cart')->count()>0)
+                        @foreach(Cart::instance('cart')->content() as $row)
+                            <div class="mini-cart-product fix">
+                                <a href="#" class="image"><img src="{{ $row->model->getImage() }}" alt="" /></a>
+                                <div class="content fix">
+                                    <a href="{{ route('frontend.product_detail',$row->model->id) }}" class="title"> {{ $row->name }} </a>
+                                    <p>Qty: {{ $row->qty }}</p>
+                                    <button class="remove" onclick="document.getElementById('rowId').value = '{{ $row->rowId }}';document.getElementById('cart-delete-form').submit();"><i class="zmdi zmdi-close"></i></button>
+                                </div>
+                            </div>
+                        @endforeach
+                        <form id="cart-delete-form" action="{{ route('frontend.cart.delete') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="rowId" id="rowId" value="">
+                        </form>
+                        <div class="mini-cart-checkout text-center">
+                            <a href="#">checkout</a>
                         </div>
-                    </div>
-                    <div class="mini-cart-product fix">
-                        <a href="#" class="image"><img src="{{ url('assets/frontend') }}/img/mini-cart/2.jpg" alt="" /></a>
-                        <div class="content fix">
-                            <a href="#" class="title">wooden furniture</a>
-                            <p>Color: Black</p>
-                            <p>Size: SL</p>
-                            <button class="remove"><i class="zmdi zmdi-close"></i></button>
-                        </div>
-                    </div>
-                    <div class="mini-cart-product fix">
-                        <a href="#" class="image"><img src="{{ url('assets/frontend') }}/img/mini-cart/3.jpg" alt="" /></a>
-                        <div class="content fix">
-                            <a href="#" class="title">wooden furniture</a>
-                            <p>Color: Black</p>
-                            <p>Size: SL</p>
-                            <button class="remove"><i class="zmdi zmdi-close"></i></button>
-                        </div>
-                    </div>
-                    <div class="mini-cart-checkout text-center">
-                        <a href="#">checkout</a>
-                    </div>
+                    @else
+                        <h3 style="color: white;">Cart is empty</h3>
+                    @endif
                 </div>
             </div>
             <!-- Header Search -->
@@ -238,7 +230,6 @@
                 <div class="search-dropdown dropdown-menu right">
                     <form action="#">
                         <input type="text" placeholder="Search Product...">
-                        <input type="submit" class="search-submit">
                     </form>
                 </div>
             </div>
@@ -385,10 +376,11 @@
                 <div class="col-xs-12">
                     <div class="newsletter-wrapper">
                         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-xs-12">
-                            <h3>NewsLetter Sign-Up</h3>
+                            <h3>Promotion Sign-Up</h3>
                             <div class="newsletter-form float-right">
-                                <form id="mc-form" class="mc-form" >
-                                    <input id="mc-email" type="email" autocomplete="off" placeholder="Enter Phone Number..." />
+                                <form id="mc-form" class="mc-form" action="{{ route('frontend.subscribe') }}" method="post">
+                                    {{ csrf_field() }}
+                                    <input id="phone" name="phone" type="text" autocomplete="off" placeholder="Enter Phone Number..." />
                                     <input id="mc-submit" type="submit" value="subscribe" />
                                 </form>
                                 <!-- mailchimp-alerts Start -->
@@ -467,7 +459,7 @@
         <div class="container">
             <div class="row">
                 <div class="copyright text-left col-sm-6 col-xs-12">
-                    <p>Copyright &copy; 2016 <a href="http://hastech.company/" target="_blank">Hastech</a>. All Right Reserved.</p>
+                    <p>Copyright &copy; {{ date('Y') }} <a href="#" target="_blank">STIKOM Bali</a>. All Right Reserved.</p>
                 </div>
                 <div class="payment-method text-right col-sm-6 col-xs-12">
                     <img src="{{ url('assets/frontend') }}/img/payment/1.png" alt="payment" />
@@ -501,6 +493,35 @@
 ============================================ -->
 <script src="{{ url('assets/frontend') }}/js/main.js"></script>
 @stack('plugin_scripts')
+
+<script>
+    $('#mc-form').submit(function() {
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            url: '<?= route('frontend.subscribe') ?>',
+            type: 'POST',
+            data: {phone:$("#phone").val()},
+            success: function (data) {
+                if(data == "1"){
+                    $('.mailchimp-success').html('' + "Thank you for your subscribe!").fadeIn(900);
+                    $('.mailchimp-error').fadeOut(400);
+                }else{
+                    $('.mailchimp-error').html('' + "Your are already subscriber!").fadeIn(900);
+                    $('.mailchimp-success').fadeOut(400);
+                }
+            }
+        });
+        return false;
+
+        //alert("Thank you for your comment!");
+    });
+</script>
 @stack('scripts')
 </body>
 </html>

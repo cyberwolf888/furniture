@@ -72,10 +72,10 @@
                             <span class="pro-label">sale</span>
                             @endif
                             <div class="pro-image fix">
-                                <a href="#" class="image"><img src="{{ $product->getImage() }}" alt=""></a>
+                                <a href="{{ route('frontend.product_detail',['id'=>$product->id]) }}" class="image"><img src="{{ $product->getImage() }}" alt=""></a>
                                 <div class="pro-action">
-                                    <a href="#" class="action-btn cart"><i class="zmdi zmdi-shopping-cart"></i></a>
-                                    <a href="#" class="action-btn quick-view"><i class="zmdi zmdi-eye"></i></a>
+                                    <a href="{{ route('frontend.product_detail',['id'=>$product->id]) }}" class="action-btn cart"><i class="zmdi zmdi-shopping-cart"></i></a>
+                                    <a href="{{ route('frontend.product_detail',['id'=>$product->id]) }}" class="action-btn quick-view"><i class="zmdi zmdi-eye"></i></a>
                                 </div>
                             </div>
                             <div class="pro-details text-center">
@@ -85,7 +85,7 @@
                                         Available
                                     </p>
                                 </div>
-                                <a href="#" class="pro-title">{{ $product->name }}</a>
+                                <a href="{{ route('frontend.product_detail',['id'=>$product->id]) }}" class="pro-title">{{ $product->name }}</a>
                                 @if($product->discount > 0)
                                     <span class="new"><strike>Rp {{ number_format($product->price,0,',','.') }}</strike></span>
                                     <h3 class="pro-price" style="margin-top: 0;"><span class="new">Rp {{ number_format($product->price-($product->price*$product->discount/100),0,',','.') }}</span></h3>

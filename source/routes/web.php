@@ -11,10 +11,17 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
 Auth::routes();
 
+//Frontend
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/detail/{id}', 'HomeController@product_detail')->name('frontend.product_detail');
+Route::post('/cart/insert', 'HomeController@cart_insert')->name('frontend.cart.insert');
+Route::post('/cart/delete', 'HomeController@cart_delete')->name('frontend.cart.delete');
+Route::post('/subscribe', 'HomeController@subscribe')->name('frontend.subscribe');
+
+
+//Backend
 Route::group(['prefix' => 'backend', 'middleware' => ['auth','role:admin-access|owner-access'], 'as'=>'backend'], function() {
 
     //Dashboard
