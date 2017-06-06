@@ -45,13 +45,19 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
+                                    {!! Form::number('weight', $model->weight,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
+                                    {!! Form::label('weight', 'Product Weight (kg)', ['data-error' => 'wrong','data-success'=>'right']) !!}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="input-field col s12">
                                     {!! Form::number('discount', $model->discount == null ? 0: null,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
                                     {!! Form::label('discount', 'Discount (%)', ['data-error' => 'wrong','data-success'=>'right']) !!}
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    {!! Form::textarea('description', $model->description,['length'=>'120','class'=>'materialize-textarea validate','required'=>'','aria-required'=>'true']) !!}
+                                    {!! Form::textarea('description', $model->description,['class'=>'materialize-textarea validate','required'=>'','aria-required'=>'true']) !!}
                                     {!! Form::label('description', 'Description', ['data-error' => 'wrong','data-success'=>'right']) !!}
                                 </div>
                             </div>

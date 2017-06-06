@@ -208,6 +208,7 @@
                                 <div class="content fix">
                                     <a href="{{ route('frontend.product_detail',$row->model->id) }}" class="title"> {{ $row->name }} </a>
                                     <p>Qty: {{ $row->qty }}</p>
+                                    <p>Rp {{ number_format($row->price*$row->qty,0,',','.') }}</p>
                                     <button class="remove" onclick="document.getElementById('rowId').value = '{{ $row->rowId }}';document.getElementById('cart-delete-form').submit();"><i class="zmdi zmdi-close"></i></button>
                                 </div>
                             </div>
@@ -217,7 +218,7 @@
                             <input type="hidden" name="rowId" id="rowId" value="">
                         </form>
                         <div class="mini-cart-checkout text-center">
-                            <a href="#">checkout</a>
+                            <a href="{{ route('frontend.cart.manage') }}">checkout</a>
                         </div>
                     @else
                         <h3 style="color: white;">Cart is empty</h3>

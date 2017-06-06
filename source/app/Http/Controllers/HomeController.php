@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Subscribe;
+use App\Models\Transaction;
+use App\Models\TransactionDetail;
 use Illuminate\Http\Request;
 use Cart;
 use Validator;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -26,14 +29,28 @@ class HomeController extends Controller
     }
 
     //Cart
+    public function cart_manage()
+    {
+        return view('cart');
+    }
+
     public function cart_insert(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
         $details = ProductDetail::where('product_id',$product->id)->pluck('value','label')->toArray();
-        Cart::instance('cart')->add($product->id, $product->name, $request->qty, $product->price, $details)->associate('App\Models\Product');
+        $price = $product->price;
+        if($product->discount>0){
+            $price = $product->price-($product->price*$product->discount/100);
+        }
+        Cart::instance('cart')->add($product->id, $product->name, $request->qty, $price, $details)->associate('App\Models\Product');
         return response()->json([
             'status' => '1'
         ]);
+    }
+
+    public function cart_update(Request $request)
+    {
+        Cart::instance('cart')->update($request->rowId, $request->qty);
     }
 
     public function cart_delete(Request $request)
@@ -42,6 +59,62 @@ class HomeController extends Controller
         Cart::instance('cart')->remove($rowId);
 
         return redirect()->back();
+    }
+
+    //Checkout
+    public function checkout()
+    {
+        if(!Auth::check())
+            return redirect('login');
+
+        return view('checkout');
+    }
+
+    public function checkout_proses(Request $request)
+    {
+        $model = new Transaction();
+        $cart = Cart::instance('cart');
+
+        $model->member_id = Auth::user()->id;
+        $model->fullname =Auth::user()->name;
+        $model->phone = Auth::user()->phone;
+        $model->address = $request->address;
+        $model->city = $request->city;
+        $model->subtotal = $cart->total(0,'','');
+        $berat = 0;
+        foreach ($cart->content() as $row)
+        {
+            $berat+=($row->model->weight*$row->qty);
+        }
+        if(Auth::user()->city == "Denpasar" || Auth::user()->city == "Badung"){
+            $model->shipping = 0;
+        }else{
+            $model->shipping = $berat*\App\Models\Setting::find(1)->value;
+        }
+        $model->total = $model->shipping+$model->subtotal;
+        $model->status = Transaction::NEW_ORDER;
+        $model->note = $request->note;
+        $model->save();
+
+        foreach ($cart->content() as $row)
+        {
+            $detail = new TransactionDetail();
+            $detail->transaction_id = $model->id;
+            $detail->product_id = $row->id;
+            $detail->qty = $row->qty;
+            $detail->price = $row->price;
+            $detail->total = $row->qty*$row->price;
+            $detail->save();
+        }
+        $cart->destroy();
+
+        return redirect()->route('frontend.invoice',base64_encode($model->id));
+    }
+
+    //Invoice
+    public function invoice($id)
+    {
+        return 'invoice';
     }
 
     //Subscribe

@@ -51,8 +51,8 @@
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <input name="zip_code" id="zip_code" type="number" class="validate" value="{{ $model->zip_code }}" required="" aria-required="true">
-                                <label for="zip_code" data-error="not valid" data-success="valid">Postal Code</label>
+                                {!! Form::select('city', $model->getListCity(), $model->city) !!}
+                                {!! Form::label('city', 'City') !!}
                             </div>
                         </div>
                         <div class="row">

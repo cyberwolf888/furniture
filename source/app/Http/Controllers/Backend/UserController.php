@@ -37,7 +37,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required',
+            'city' => 'required',
             'password' => 'required|min:6|confirmed'
         ]);
 
@@ -53,7 +53,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->password = bcrypt($request['password']);
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->type = User::ADMIN;
@@ -79,7 +79,7 @@ class UserController extends Controller
             'fullname' => 'required|max:255',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required'
+            'city' => 'required'
         ];
 
         if($request->email === $user->email){
@@ -104,7 +104,7 @@ class UserController extends Controller
         $user->name = $request->fullname;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->save();
 
@@ -139,7 +139,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required',
+            'city' => 'required',
             'password' => 'required|min:6|confirmed'
         ]);
 
@@ -155,7 +155,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->password = bcrypt($request['password']);
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->type = User::OWNER;
@@ -181,7 +181,7 @@ class UserController extends Controller
             'fullname' => 'required|max:255',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required'
+            'city' => 'required'
         ];
 
         if($request->email === $user->email){
@@ -206,7 +206,7 @@ class UserController extends Controller
         $user->name = $request->fullname;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->save();
 
@@ -241,7 +241,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required',
+            'city' => 'required',
             'password' => 'required|min:6|confirmed'
         ]);
 
@@ -257,7 +257,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->password = bcrypt($request['password']);
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->type = User::MEMBER;
@@ -283,7 +283,7 @@ class UserController extends Controller
             'fullname' => 'required|max:255',
             'phone' => 'required',
             'address' => 'required',
-            'zip_code' => 'required'
+            'city' => 'required'
         ];
 
         if($request->email === $user->email){
@@ -308,7 +308,7 @@ class UserController extends Controller
         $user->name = $request->fullname;
         $user->phone = $request->phone;
         $user->address = $request->address;
-        $user->zip_code = $request->zip_code;
+        $user->city = $request->city;
         $user->isActive = $request->status == 'on' ? 1 : 0;
         $user->save();
 

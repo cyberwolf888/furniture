@@ -35,8 +35,9 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:category|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'price' => 'required|numeric',
+            'weight' => 'required|numeric',
             'discount' => 'required|numeric',
             'available' => 'required',
         ]);
@@ -45,6 +46,7 @@ class ProductController extends Controller
         $model->category_id = $request->category_id;
         $model->name = $request->name;
         $model->price = $request->price;
+        $model->weight = $request->weight;
         $model->description = $request->description;
         $model->discount = $request->discount;
         $model->isSale = $request->isSale;
@@ -84,8 +86,9 @@ class ProductController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:category|max:255',
-            'description' => 'required|max:255',
+            'description' => 'required',
             'price' => 'required|numeric',
+            'weight' => 'required|numeric',
             'discount' => 'required|numeric',
             'available' => 'required',
         ]);
@@ -93,6 +96,7 @@ class ProductController extends Controller
         $model->category_id = $request->category_id;
         $model->name = $request->name;
         $model->price = $request->price;
+        $model->weight = $request->weight;
         $model->description = $request->description;
         $model->discount = $request->discount;
         $model->isSale = $request->isSale;

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 04 Jun 2017 pada 11.38
+-- Generation Time: 06 Jun 2017 pada 07.53
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -39,8 +39,8 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Bedebah', 'bedebah category', '2017-05-26 23:01:40', '2017-05-26 23:01:40'),
-(2, 'asd', 'asdsd', '2017-05-26 23:03:18', '2017-05-26 23:03:18');
+(1, 'Meja', 'Meja belajar', '2017-05-26 23:01:40', '2017-06-05 19:45:15'),
+(2, 'Kursi', 'Kursi terbaik yang pernah ada', '2017-05-26 23:03:18', '2017-06-05 19:45:31');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,15 @@ CREATE TABLE `detail_transaction` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `detail_transaction`
+--
+
+INSERT INTO `detail_transaction` (`id`, `transaction_id`, `product_id`, `qty`, `price`, `total`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, 1, 1600000, 1600000, '2017-06-05 21:47:26', '2017-06-05 21:47:26'),
+(2, 2, 1, 2, 1600000, 3200000, '2017-06-05 21:50:47', '2017-06-05 21:50:47'),
+(3, 2, 2, 1, 2500000, 2500000, '2017-06-05 21:50:47', '2017-06-05 21:50:47');
 
 -- --------------------------------------------------------
 
@@ -86,6 +95,7 @@ CREATE TABLE `product` (
   `name` varchar(100) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
+  `weight` int(11) NOT NULL,
   `discount` float NOT NULL,
   `isSale` enum('1','0') NOT NULL,
   `available` enum('1','0') NOT NULL,
@@ -97,9 +107,9 @@ CREATE TABLE `product` (
 -- Dumping data untuk tabel `product`
 --
 
-INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `discount`, `isSale`, `available`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Meja Belajar', 'Meja paling awesome yang pernah ada di muka bumi', 700000, 0, '0', '1', '2017-05-27 21:58:12', '2017-05-27 21:58:12'),
-(2, 1, 'Kusi Pintar', 'Kursi yang membantu untuk belajar menjadi lebih pintar', 500000, 10, '1', '1', '2017-06-02 18:31:24', '2017-06-02 18:31:24');
+INSERT INTO `product` (`id`, `category_id`, `name`, `description`, `price`, `weight`, `discount`, `isSale`, `available`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Sunset Coffee Table', 'Hiasilah ruangan santai Anda dengan Sunset Coffee Table. Meja yang fungsional karena memiiki masing-masing 1 buah laci bertutup dan rak terbuka yang berguna untuk menaruh barang-barang Anda. Permukaan meja yang cukup lebar dan luas dapat menjadi wadah Anda menaruh secangkir minuman Anda atau cemilan untuk para tamu. Warnanya yang natural cocok untuk menghiasi suasana ruangan apapun.', 2000000, 15, 20, '1', '1', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(2, 2, 'Toril Wingchair', 'Furniture minimalis ini akan langsung mencuri perhatian siapapun yang melihatnya. Toril Armchair memang dirancang bagi orang-orang yang mengutamakan kenyamanan sekaligus gaya. Memiliki tampilan fisik yang terkesan gagah, Toril akan bersanding manis dengan Millard Side Table sebagai pendampingnya. Bermain game, melewatkan waktu dengan membaca novel bahkan tidak melakukan apapun, sah-sah saja. Hal yang wajar terjadi ketika Anda sudah mengenal dan merasakan langsung sensasi dari sebuah Toril Armchair. Dengan garansi 365 hari yang akan Anda dapatkan dengan pembeliannya, tidak perlu meragukan ketahanannya. Furniture ini juga adalah 100% karya anak Indonesia.', 2500000, 14, 0, '0', '1', '2017-06-05 20:13:01', '2017-06-05 20:13:01');
 
 -- --------------------------------------------------------
 
@@ -121,12 +131,16 @@ CREATE TABLE `product_detail` (
 --
 
 INSERT INTO `product_detail` (`id`, `product_id`, `label`, `value`, `created_at`, `updated_at`) VALUES
-(3, 1, 'Color', 'Hitam', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
-(4, 1, 'Material', 'Kayu Jati', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
-(5, 1, 'Size', 'L', '2017-05-27 22:09:46', '2017-05-27 22:09:46'),
-(6, 2, 'Material', 'Kayu', '2017-06-02 18:31:24', '2017-06-02 18:31:24'),
-(7, 2, 'Color', 'Hitam', '2017-06-02 18:31:24', '2017-06-02 18:31:24'),
-(8, 2, 'Weight', '10', '2017-06-02 18:31:24', '2017-06-02 18:31:24');
+(1, 1, 'Material', 'Kayu Jati', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(2, 1, 'Warna', 'Coklat', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(3, 1, 'Panjang', '120 cm', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(4, 1, 'Lebar', '70 cm', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(5, 1, 'Tinggi', '42 cm', '2017-06-05 19:55:09', '2017-06-05 19:55:09'),
+(6, 2, 'Material', 'Kayu Solid', '2017-06-05 20:13:01', '2017-06-05 20:13:01'),
+(7, 2, 'Warna', 'Coklat', '2017-06-05 20:13:01', '2017-06-05 20:13:01'),
+(8, 2, 'Panjang', '78cm', '2017-06-05 20:13:01', '2017-06-05 20:13:01'),
+(9, 2, 'Lebar', '101cm', '2017-06-05 20:13:01', '2017-06-05 20:13:01'),
+(10, 2, 'Tinggi', '112cm', '2017-06-05 20:13:01', '2017-06-05 20:13:01');
 
 -- --------------------------------------------------------
 
@@ -147,9 +161,10 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `image`, `created_at`, `updated_at`) VALUES
-(8, 2, 'dc36bdafafc1a38b982df60e280fa4aa.jpg', '2017-06-02 18:38:36', '2017-06-02 18:38:36'),
-(9, 2, 'dae0adc7fc3ec23d0465787f1ddbda05.jpg', '2017-06-02 18:38:46', '2017-06-02 18:38:46'),
-(10, 1, 'db2f2b22a645dd2570e6756f88174dc8.jpg', '2017-06-02 18:48:37', '2017-06-02 18:48:37');
+(11, 1, '05508444d81d56980396831e3d2d6dd2.jpg', '2017-06-05 19:55:19', '2017-06-05 19:55:19'),
+(12, 1, '9231adcb8c7aa79ad3895be90c5e1b1c.jpg', '2017-06-05 19:55:27', '2017-06-05 19:55:27'),
+(13, 2, '37f908f3a2fc1b48be59f284c84a7585.jpg', '2017-06-05 20:13:19', '2017-06-05 20:13:19'),
+(14, 2, '3da9cad1b557dbb5cd057162b2656174.jpg', '2017-06-05 20:13:27', '2017-06-05 20:13:27');
 
 -- --------------------------------------------------------
 
@@ -170,10 +185,12 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `type`, `value`, `created_at`, `updated_at`) VALUES
-(1, 'ongkir', '16000', '2017-06-02 18:18:52', '2017-06-02 18:18:52'),
+(1, 'ongkir', '10000', '2017-06-02 18:18:52', '2017-06-05 20:28:16'),
 (2, 'product_detail', 'Material', '2017-06-02 18:19:13', '2017-06-02 18:23:42'),
-(3, 'product_detail', 'Color', '2017-06-02 18:19:27', '2017-06-02 18:23:34'),
-(4, 'product_detail', 'Weight', '2017-06-02 18:20:11', '2017-06-02 18:23:26');
+(3, 'product_detail', 'Warna', '2017-06-02 18:19:27', '2017-06-05 19:46:56'),
+(4, 'product_detail', 'Panjang', '2017-06-02 18:20:11', '2017-06-05 19:47:05'),
+(5, 'product_detail', 'Lebar', '2017-06-05 19:47:20', '2017-06-05 19:47:20'),
+(6, 'product_detail', 'Tinggi', '2017-06-05 19:47:29', '2017-06-05 19:47:29');
 
 -- --------------------------------------------------------
 
@@ -200,14 +217,23 @@ CREATE TABLE `transaction` (
   `fullname` varchar(255) NOT NULL DEFAULT '0',
   `phone` varchar(12) NOT NULL DEFAULT '0',
   `address` varchar(255) NOT NULL DEFAULT '0',
-  `zip_code` char(50) NOT NULL DEFAULT '0',
-  `state` varchar(255) NOT NULL DEFAULT '0',
-  `total` varchar(255) NOT NULL DEFAULT '0',
+  `city` varchar(100) NOT NULL DEFAULT '0',
+  `subtotal` int(11) NOT NULL DEFAULT '0',
+  `shipping` int(11) NOT NULL DEFAULT '0',
+  `total` int(11) NOT NULL DEFAULT '0',
   `status` int(1) NOT NULL DEFAULT '0',
-  `resi` varchar(100) DEFAULT NULL,
+  `note` text,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `transaction`
+--
+
+INSERT INTO `transaction` (`id`, `member_id`, `fullname`, `phone`, `address`, `city`, `subtotal`, `shipping`, `total`, `status`, `note`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Member Baru', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 1600000, 150000, 1750000, 1, 'Jangan Sampai rusak', '2017-06-05 21:47:26', '2017-06-05 21:47:26'),
+(2, 4, 'Member Baru', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 5700000, 440000, 6140000, 1, 'asdasd', '2017-06-05 21:50:47', '2017-06-05 21:50:47');
 
 -- --------------------------------------------------------
 
@@ -222,7 +248,7 @@ CREATE TABLE `users` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `zip_code` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `isActive` int(1) NOT NULL DEFAULT '1',
   `type` int(1) DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -234,11 +260,11 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `zip_code`, `isActive`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@mail.com', '$2y$10$bLGu/CEj58z2G1QX9J9DVegK6KScKwW0aUZOyhkXMld/7NhnVpOhu', '0822464828', 'Jalan Nangka', '82188', 1, 1, 'CpFn52UlKPMTZgiTBosLVLqXPK4JWkICGONn2jH57bxVkMz5r3iQTcxjsgEb', '2017-05-26 20:49:12', '2017-05-30 00:55:14'),
-(2, 'Admn Baru', 'baru@mail.com', '$2y$10$iKM.KC4IV6PlDsakdfC.JO/UPUOzBj.adt16uxpFIVX.WAqHixNtq', '08483748473', 'Jalan Merdeka No. 120', '82181', 1, 1, NULL, '2017-05-29 23:30:18', '2017-05-29 23:30:18'),
-(3, 'Owner', 'owner@mail.com', '$2y$10$dw1VP7w4LlzL4t2NkJFkdu7XyvMgKuEynTaoFQEXPpnF9fFlrGq.S', '0857366487', 'Jalan Penarungan', '86432', 1, 2, 'qir3OexVXySqdhWxKSJj2tfhYzOObbcl42w8sVZCWknaAhnZTIDhkB6rkyZq', '2017-05-29 23:53:42', '2017-05-29 23:54:29'),
-(4, 'Member Baru', 'member@mail.com', '$2y$10$Wxj0e39m8PM/c7EA1t7WPOjFD1.HwpN8CblQVUfT4dzHjoN5vfmCu', '086734747', 'Jalan Wisnu Marga Belayu No 19', '82181', 1, 3, NULL, '2017-05-30 00:00:40', '2017-05-30 00:00:40');
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `city`, `isActive`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'admin@mail.com', '$2y$10$bLGu/CEj58z2G1QX9J9DVegK6KScKwW0aUZOyhkXMld/7NhnVpOhu', '0822464828', 'Jalan Nangka', 'Gianyar', 1, 1, 'ISMsSzXLSjxDb80DrMFfunfydKKc3Nb0EelI0vDjOAPRXTOKsQa2vobBiwUS', '2017-05-26 20:49:12', '2017-05-30 00:55:14'),
+(2, 'Admn Baru', 'baru@mail.com', '$2y$10$iKM.KC4IV6PlDsakdfC.JO/UPUOzBj.adt16uxpFIVX.WAqHixNtq', '08483748473', 'Jalan Merdeka No. 120', 'Gianyar', 1, 1, NULL, '2017-05-29 23:30:18', '2017-05-29 23:30:18'),
+(3, 'Owner', 'owner@mail.com', '$2y$10$dw1VP7w4LlzL4t2NkJFkdu7XyvMgKuEynTaoFQEXPpnF9fFlrGq.S', '0857366487', 'Jalan Penarungan', 'Gianyar', 1, 2, 'qir3OexVXySqdhWxKSJj2tfhYzOObbcl42w8sVZCWknaAhnZTIDhkB6rkyZq', '2017-05-29 23:53:42', '2017-05-29 23:54:29'),
+(4, 'Member Baru', 'member@mail.com', '$2y$10$Wxj0e39m8PM/c7EA1t7WPOjFD1.HwpN8CblQVUfT4dzHjoN5vfmCu', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 1, 3, NULL, '2017-05-30 00:00:40', '2017-06-05 20:09:05');
 
 --
 -- Indexes for dumped tables
@@ -318,7 +344,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `detail_transaction`
 --
 ALTER TABLE `detail_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `payment`
 --
@@ -333,17 +359,17 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `product_detail`
 --
 ALTER TABLE `product_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `setting`
 --
 ALTER TABLE `setting`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `subscribe`
 --
@@ -353,7 +379,7 @@ ALTER TABLE `subscribe`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --

@@ -35,4 +35,21 @@ class User extends Authenticatable
     {
         return $this->isActive == 1 ? 'Active' : 'Suspend';
     }
+
+    public function getListCity()
+    {
+        $city = [
+            'Denpasar'=>'Denpasar',
+            'Badung'=>'Badung',
+            'Bangli'=>'Bangli',
+            'Buleleng'=>'Buleleng',
+            'Gianyar'=>'Gianyar',
+            'Jembrana'=>'Jembrana',
+            'Karangasem'=>'Karangasem',
+            'Klungkung'=>'Klungkung',
+            'Tabanan'=>'Tabanan',
+        ];
+
+        return $city;
+    }
 }

@@ -16,8 +16,13 @@ Auth::routes();
 //Frontend
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/detail/{id}', 'HomeController@product_detail')->name('frontend.product_detail');
+Route::get('/cart', 'HomeController@cart_manage')->name('frontend.cart.manage');
 Route::post('/cart/insert', 'HomeController@cart_insert')->name('frontend.cart.insert');
+Route::post('/cart/update', 'HomeController@cart_update')->name('frontend.cart.update');
 Route::post('/cart/delete', 'HomeController@cart_delete')->name('frontend.cart.delete');
+Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
+Route::post('/checkout', 'HomeController@checkout_proses')->name('frontend.checkout.proses');
+Route::get('/invoice/{id}', 'HomeController@invoice')->name('frontend.invoice');
 Route::post('/subscribe', 'HomeController@subscribe')->name('frontend.subscribe');
 
 
