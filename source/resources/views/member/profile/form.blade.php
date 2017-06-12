@@ -1,11 +1,11 @@
-@extends('layouts.backend')
+@extends('layouts.member')
 
 @push('plugin_css')
 <link href="{{ url('assets/backend') }}/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css"/>
 @endpush
 
 @section('content')
-    {!! Form::open(['route' => ['backend.profile.update', $model->id], 'method' => 'post']) !!}
+    {!! Form::open(['route' => ['member.profile.update', $model->id], 'method' => 'post']) !!}
     <main class="mn-inner">
         <div class="row">
             <div class="col s12">

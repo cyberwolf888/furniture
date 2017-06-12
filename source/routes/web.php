@@ -23,6 +23,9 @@ Route::post('/cart/delete', 'HomeController@cart_delete')->name('frontend.cart.d
 Route::get('/checkout', 'HomeController@checkout')->name('frontend.checkout');
 Route::post('/checkout', 'HomeController@checkout_proses')->name('frontend.checkout.proses');
 Route::get('/invoice/{id}', 'HomeController@invoice')->name('frontend.invoice');
+Route::get('/invoice/{id}/print', 'HomeController@invoice_print')->name('frontend.invoice.print');
+Route::get('/payment/{id}', 'HomeController@payment')->name('frontend.payment');
+Route::post('/payment/{id}', 'HomeController@payment_proses')->name('frontend.payment.proses');
 Route::post('/subscribe', 'HomeController@subscribe')->name('frontend.subscribe');
 
 
@@ -62,6 +65,8 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','role:admin-access|
         Route::get('/detail/{id}', 'Backend\TransactionController@show')->name('.show');
         Route::post('/approve', 'Backend\TransactionController@approve')->name('.approve');
         Route::post('/decline', 'Backend\TransactionController@decline')->name('.decline');
+        Route::post('/shipped', 'Backend\TransactionController@shipped')->name('.shipped');
+        Route::post('/finish', 'Backend\TransactionController@finish')->name('.finish');
         Route::post('/cancel', 'Backend\TransactionController@cancel')->name('.cancel');
     });
 
@@ -126,4 +131,20 @@ Route::group(['prefix' => 'backend', 'middleware' => ['auth','role:admin-access|
         Route::post('/edit/{id}', 'Backend\ProfileController@update')->name('.update');
     });
 
+});
+
+//Member
+Route::group(['prefix' => 'member', 'middleware' => ['auth','role:member-access'], 'as'=>'member'], function() {
+    Route::get('/', 'Member\DashboardController@index')->name('.dashboard');
+
+    Route::group(['prefix' => 'transaction', 'as'=>'.transaction'], function() {
+        Route::get('/', 'Member\TransactionController@index')->name('.manage');
+        Route::get('/detail/{id}', 'Member\TransactionController@show')->name('.show');
+        Route::post('/approve', 'Member\TransactionController@approve')->name('.approve');
+    });
+
+    Route::group(['prefix' => 'profile', 'as'=>'.profile'], function() {
+        Route::get('/', 'Member\ProfileController@index')->name('.index');
+        Route::post('/edit/{id}', 'Member\ProfileController@update')->name('.update');
+    });
 });

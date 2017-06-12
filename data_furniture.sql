@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 06 Jun 2017 pada 07.53
+-- Generation Time: 12 Jun 2017 pada 07.44
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -50,7 +50,7 @@ INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`)
 
 CREATE TABLE `detail_transaction` (
   `id` int(11) NOT NULL,
-  `transaction_id` int(11) NOT NULL,
+  `transaction_id` varchar(50) NOT NULL,
   `product_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `price` float NOT NULL,
@@ -64,9 +64,7 @@ CREATE TABLE `detail_transaction` (
 --
 
 INSERT INTO `detail_transaction` (`id`, `transaction_id`, `product_id`, `qty`, `price`, `total`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 1600000, 1600000, '2017-06-05 21:47:26', '2017-06-05 21:47:26'),
-(2, 2, 1, 2, 1600000, 3200000, '2017-06-05 21:50:47', '2017-06-05 21:50:47'),
-(3, 2, 2, 1, 2500000, 2500000, '2017-06-05 21:50:47', '2017-06-05 21:50:47');
+(1, 'TR17060001', 1, 1, 1600000, 1600000, '2017-06-06 18:20:28', '2017-06-06 18:20:28');
 
 -- --------------------------------------------------------
 
@@ -76,12 +74,19 @@ INSERT INTO `detail_transaction` (`id`, `transaction_id`, `product_id`, `qty`, `
 
 CREATE TABLE `payment` (
   `id` int(11) NOT NULL,
-  `transaction_id` int(11) DEFAULT NULL,
+  `transaction_id` varchar(50) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `payment`
+--
+
+INSERT INTO `payment` (`id`, `transaction_id`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'TR17060001', '163a5406c7a0b48d5f0c1167ec40d1c8.jpg', 1, '2017-06-10 22:41:14', '2017-06-11 20:31:58');
 
 -- --------------------------------------------------------
 
@@ -212,7 +217,7 @@ CREATE TABLE `subscribe` (
 --
 
 CREATE TABLE `transaction` (
-  `id` int(11) NOT NULL,
+  `id` varchar(50) NOT NULL,
   `member_id` int(11) NOT NULL DEFAULT '0',
   `fullname` varchar(255) NOT NULL DEFAULT '0',
   `phone` varchar(12) NOT NULL DEFAULT '0',
@@ -232,8 +237,7 @@ CREATE TABLE `transaction` (
 --
 
 INSERT INTO `transaction` (`id`, `member_id`, `fullname`, `phone`, `address`, `city`, `subtotal`, `shipping`, `total`, `status`, `note`, `created_at`, `updated_at`) VALUES
-(1, 4, 'Member Baru', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 1600000, 150000, 1750000, 1, 'Jangan Sampai rusak', '2017-06-05 21:47:26', '2017-06-05 21:47:26'),
-(2, 4, 'Member Baru', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 5700000, 440000, 6140000, 1, 'asdasd', '2017-06-05 21:50:47', '2017-06-05 21:50:47');
+('TR17060001', 4, 'Member Baru', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 1600000, 150000, 1750000, 0, NULL, '2017-06-06 18:20:28', '2017-06-11 20:35:06');
 
 -- --------------------------------------------------------
 
@@ -264,7 +268,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `cit
 (1, 'Administrator', 'admin@mail.com', '$2y$10$bLGu/CEj58z2G1QX9J9DVegK6KScKwW0aUZOyhkXMld/7NhnVpOhu', '0822464828', 'Jalan Nangka', 'Gianyar', 1, 1, 'ISMsSzXLSjxDb80DrMFfunfydKKc3Nb0EelI0vDjOAPRXTOKsQa2vobBiwUS', '2017-05-26 20:49:12', '2017-05-30 00:55:14'),
 (2, 'Admn Baru', 'baru@mail.com', '$2y$10$iKM.KC4IV6PlDsakdfC.JO/UPUOzBj.adt16uxpFIVX.WAqHixNtq', '08483748473', 'Jalan Merdeka No. 120', 'Gianyar', 1, 1, NULL, '2017-05-29 23:30:18', '2017-05-29 23:30:18'),
 (3, 'Owner', 'owner@mail.com', '$2y$10$dw1VP7w4LlzL4t2NkJFkdu7XyvMgKuEynTaoFQEXPpnF9fFlrGq.S', '0857366487', 'Jalan Penarungan', 'Gianyar', 1, 2, 'qir3OexVXySqdhWxKSJj2tfhYzOObbcl42w8sVZCWknaAhnZTIDhkB6rkyZq', '2017-05-29 23:53:42', '2017-05-29 23:54:29'),
-(4, 'Member Baru', 'member@mail.com', '$2y$10$Wxj0e39m8PM/c7EA1t7WPOjFD1.HwpN8CblQVUfT4dzHjoN5vfmCu', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Gianyar', 1, 3, NULL, '2017-05-30 00:00:40', '2017-06-05 20:09:05');
+(4, 'Member Baru', 'member@mail.com', '$2y$10$Wxj0e39m8PM/c7EA1t7WPOjFD1.HwpN8CblQVUfT4dzHjoN5vfmCu', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Denpasar', 1, 3, 'wh2Zll3Afq3Ulhwg3WXK0a98SgrwIpRGE9uGF5sLMvQIVGSS2KRJApi3ld4I', '2017-05-30 00:00:40', '2017-06-07 21:02:04');
 
 --
 -- Indexes for dumped tables
@@ -344,12 +348,12 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `detail_transaction`
 --
 ALTER TABLE `detail_transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -375,11 +379,6 @@ ALTER TABLE `setting`
 --
 ALTER TABLE `subscribe`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `transaction`
---
-ALTER TABLE `transaction`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `users`
 --

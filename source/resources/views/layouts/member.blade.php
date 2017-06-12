@@ -4,7 +4,7 @@
 <head>
 
     <!-- Title -->
-    <title>D&G Furniture | Backend</title>
+    <title>D&G Furniture | Member</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta charset="UTF-8">
@@ -18,10 +18,10 @@
     <link href="{{ url('assets/backend') }}/plugins/material-preloader/css/materialPreloader.min.css" rel="stylesheet">
     <link href="{{ url('assets/backend') }}/plugins/metrojs/MetroJs.min.css" rel="stylesheet">
     <link href="{{ url('assets/backend') }}/plugins/weather-icons-master/css/weather-icons.min.css" rel="stylesheet">
-    @stack('plugin_css')
+@stack('plugin_css')
 
 
-    <!-- Theme Styles -->
+<!-- Theme Styles -->
     <link href="{{ url('assets/backend') }}/css/alpha.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{ url('assets/backend') }}/css/custom.css" rel="stylesheet" type="text/css"/>
 
@@ -89,29 +89,29 @@
                     <span class="chapter-title">D&G Furniture</span>
                 </div>
                 <ul class="right col s9 m3 nav-right-menu">
-                    <?php $new_order = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->count(); ?>
+                    <?php $new_order = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->where('member_id',Auth::user()->id)->count(); ?>
                     <li class="hide-on-small-and-down"><a href="javascript:void(0)" data-activates="dropdown1" class="dropdown-button dropdown-right show-on-large"><i class="material-icons">notifications_none</i>@if($new_order>0)<span class="badge">{{$new_order}}</span>@endif</a></li>
                     <li class="hide-on-med-and-up"><a href="javascript:void(0)" class="search-toggle"><i class="material-icons">search</i></a></li>
                 </ul>
 
                 <ul id="dropdown1" class="dropdown-content notifications-dropdown">
                     @if($new_order>0)
-                    <?php $tr = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->get(); ?>
-                    <li class="notificatoins-dropdown-container">
-                        <ul>
-                            <li class="notification-drop-title">New Transaction</li>
-                            @foreach($tr as $row)
-                            <li>
-                                <a href="{{ route('backend.transaction.show',['id'=>$row->id]) }}">
-                                    <div class="notification">
-                                        <div class="notification-icon circle green"><i class="material-icons">add_shopping_cart</i></div>
-                                        <div class="notification-text"><p>Rp {{ number_format($row->total,0,',','.') }} | {{ $row->fullname }}</p><span>{{ date('d F Y, H:i',strtotime($row->created_at)) }}</span></div>
-                                    </div>
-                                </a>
-                            </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                        <?php $tr = \App\Models\Transaction::where('status',\App\Models\Transaction::NEW_ORDER)->where('member_id',Auth::user()->id)->get(); ?>
+                        <li class="notificatoins-dropdown-container">
+                            <ul>
+                                <li class="notification-drop-title">New Transaction</li>
+                                @foreach($tr as $row)
+                                    <li>
+                                        <a href="{{ route('member.transaction.show',['id'=>$row->id]) }}">
+                                            <div class="notification">
+                                                <div class="notification-icon circle green"><i class="material-icons">add_shopping_cart</i></div>
+                                                <div class="notification-text"><p>Rp {{ number_format($row->total,0,',','.') }} | {{ $row->fullname }}</p><span>{{ date('d F Y, H:i',strtotime($row->created_at)) }}</span></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                     @endif
                 </ul>
             </div>
@@ -134,31 +134,11 @@
                 </div>
             </div>
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
-                <li class="no-padding @if (str_is('*.dashboard', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.dashboard') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
-                @can('admin-access')
-                <li class="no-padding @if (str_is('*.category.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.category.manage') }}"><i class="material-icons">view_column</i>Category</a></li>
-                <li class="no-padding @if (str_is('*.product.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.product.manage') }}"><i class="material-icons">store</i>Product</a></li>
-                @endcan
-                <li class="no-padding @if (str_is('*.transaction.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
-                <li class="no-padding @if (str_is('*.user.*', Route::currentRouteName()))collaps active @endif">
-                    <a class="collapsible-header waves-effect waves-grey"><i class="material-icons">perm_identity</i>Users<i class="nav-drop-icon material-icons">keyboard_arrow_right</i></a>
-                    <div class="collapsible-body">
-                        <ul>
-                            @can('owner-access')
-                            <li><a href="{{ route('backend.user.owner.manage') }}">Owner</a></li>
-                            <li><a href="{{ route('backend.user.admin.manage') }}">Admin</a></li>
-                            @endcan
-
-                            @can('admin-access')
-                            <li><a href="{{ route('backend.user.member.manage') }}">Member</a></li>
-                            @endcan
-                        </ul>
-                    </div>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('member.dashboard') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('member.transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
+                <li class="no-padding">
+                    <a class="waves-effect waves-grey" href="{{ route('member.profile.index') }}"><i class="material-icons">account_circle</i>Profile</a>
                 </li>
-                <li class="no-padding @if (str_is('*.report.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.report.index') }}"><i class="material-icons">assessment</i>Report</a></li>
-                <li class="no-padding @if (str_is('*.promotion.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.promotion.index') }}"><i class="material-icons">rss_feed</i>Promotion</a></li>
-                <li class="no-padding @if (str_is('*.setting.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.setting.manage') }}"><i class="material-icons">settings</i>Setting</a></li>
-                <li class="no-padding @if (str_is('*.profile.*', Route::currentRouteName())) active @endif"><a class="waves-effect waves-grey" href="{{ route('backend.profile.index') }}"><i class="material-icons">account_circle</i>Profile</a></li>
                 <li class="no-padding">
                     <a class="waves-effect waves-grey" href="{{ url('logout') }}"  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         <i class="material-icons">exit_to_app</i>Sign Out

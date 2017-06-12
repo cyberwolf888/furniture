@@ -76,7 +76,7 @@
                                     <td>{{ $row->getStatus($row->status) }}</td>
                                     <td>{{ date("d M Y, H:i",strtotime($row->created_at)) }}</td>
                                     <td>
-                                        <a href="#" class="btn-floating blue" style="opacity: 1;"><i class="material-icons" style="color: white;">subject</i></a>
+                                        <a href="{{ route('backend.transaction.show',$row->id) }}" class="btn-floating blue" style="opacity: 1;"><i class="material-icons" style="color: white;">subject</i></a>
                                     </td>
                                 </tr>
                             @endforeach

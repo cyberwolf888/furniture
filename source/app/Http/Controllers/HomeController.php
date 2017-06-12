@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Payment;
 use App\Models\Product;
 use App\Models\ProductDetail;
 use App\Models\Subscribe;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Cart;
 use Validator;
 use Auth;
+use Image;
 
 class HomeController extends Controller
 {
@@ -75,6 +77,7 @@ class HomeController extends Controller
         $model = new Transaction();
         $cart = Cart::instance('cart');
 
+        $model->id = $model->createId();
         $model->member_id = Auth::user()->id;
         $model->fullname =Auth::user()->name;
         $model->phone = Auth::user()->phone;
@@ -114,7 +117,45 @@ class HomeController extends Controller
     //Invoice
     public function invoice($id)
     {
-        return 'invoice';
+        $id = base64_decode($id);
+        $transaction = Transaction::findOrFail($id);
+        return view('invoice',['transaction'=>$transaction]);
+    }
+
+    public function invoice_print($id)
+    {
+        $id = base64_decode($id);
+        $transaction = Transaction::findOrFail($id);
+        return view('print',['transaction'=>$transaction]);
+    }
+
+    //Payment
+    public function payment($id)
+    {
+        $id = base64_decode($id);
+        $transaction = Transaction::findOrFail($id);
+
+        return view('payment',['id'=>$id,'transaction'=>$transaction]);
+    }
+
+    public function payment_proses(Request $request,$id)
+    {
+        $id = base64_decode($id);
+        $transaction = Transaction::findOrFail($id);
+
+        $path = base_path('../assets/img/payment/');
+        $file = Image::make($request->file('image'))->resize(800, 600)->encode('jpg', 80)->save($path.md5(str_random(12)).'.jpg');
+
+        $model = new Payment();
+        $model->transaction_id = $id;
+        $model->image = $file->basename;
+        $model->status = Payment::NOT_VERIFIED;
+        $model->save();
+
+        $transaction->status = Transaction::WAITING_VERIFIED;
+        $transaction->save();
+
+        return redirect()->route('member.transaction.show',$id);
     }
 
     //Subscribe

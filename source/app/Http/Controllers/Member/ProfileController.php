@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Member;
 
 use App\User;
+use Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Validator;
 
 class ProfileController extends Controller
 {
     public function index()
     {
         $model = Auth::user();
-        return view('backend.profile.form',[
+        return view('member.profile.form',[
             'model'=>$model
         ]);
     }
@@ -43,7 +43,7 @@ class ProfileController extends Controller
 
         if ($validator->fails()) {
             return redirect()
-                ->route('backend.profile.index')
+                ->route('member.profile.index')
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -54,6 +54,6 @@ class ProfileController extends Controller
         $user->city = $request->city;
         $user->save();
 
-        return redirect()->route('backend.profile.index')->with('success', 'Update profile!');
+        return redirect()->route('member.profile.index')->with('success', 'Update profile!');
     }
 }

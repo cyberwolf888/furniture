@@ -5846,6 +5846,22 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder {
 .contact-form .input-box textarea:focus {
   border-color: #ff9900;
 }
+
+.contact-form .input-box select {
+  background-color: transparent;
+  border: 1px solid #f1f1f1;
+  color: #909090;
+  font-weight: 300;
+  line-height: 24px;
+  padding: 10px 20px;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+  width: 100%;
+}
+.contact-form .input-box select:focus {
+  border-color: #ff9900;
+}
+
 .contact-form .submit-box {
   margin-bottom: 0;
 }
