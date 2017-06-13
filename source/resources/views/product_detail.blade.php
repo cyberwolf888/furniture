@@ -73,10 +73,14 @@
                             <div id="spec" class="pro-details-tab pro-dsc-tab tab-pane active">
                                 <div class="col-md-6">
                                     <table class="table table-striped">
+                                        <tr>
+                                            <td width="30%">Wieght</td>
+                                            <td><b>{{ $model->weight }} kg</b></td>
+                                        </tr>
                                         @foreach($model->product_detail as $detail)
                                         <tr>
                                             <td width="30%">{{ $detail->label }}</td>
-                                            <td><b>{{ $detail->value }} @if($detail->label=='Weight' || $detail->label=='Berat') kg @endif</b></td>
+                                            <td><b>{{ $detail->value }}</b></td>
                                         </tr>
                                         @endforeach
                                     </table>

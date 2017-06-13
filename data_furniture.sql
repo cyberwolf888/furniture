@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 12 Jun 2017 pada 07.44
+-- Generation Time: 13 Jun 2017 pada 08.18
 -- Versi Server: 10.1.13-MariaDB
 -- PHP Version: 7.0.5
 
@@ -265,7 +265,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `phone`, `address`, `city`, `isActive`, `type`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Administrator', 'admin@mail.com', '$2y$10$bLGu/CEj58z2G1QX9J9DVegK6KScKwW0aUZOyhkXMld/7NhnVpOhu', '0822464828', 'Jalan Nangka', 'Gianyar', 1, 1, 'ISMsSzXLSjxDb80DrMFfunfydKKc3Nb0EelI0vDjOAPRXTOKsQa2vobBiwUS', '2017-05-26 20:49:12', '2017-05-30 00:55:14'),
+(1, 'Administrator', 'admin@mail.com', '$2y$10$bLGu/CEj58z2G1QX9J9DVegK6KScKwW0aUZOyhkXMld/7NhnVpOhu', '0822464828', 'Jalan Nangka', 'Gianyar', 1, 1, 'CrucARiCcuH6BkIT9JJ2Z8yWvIKUUDfV3CbJosnBF61K0ZO65Z4BROtGhEw9', '2017-05-26 20:49:12', '2017-05-30 00:55:14'),
 (2, 'Admn Baru', 'baru@mail.com', '$2y$10$iKM.KC4IV6PlDsakdfC.JO/UPUOzBj.adt16uxpFIVX.WAqHixNtq', '08483748473', 'Jalan Merdeka No. 120', 'Gianyar', 1, 1, NULL, '2017-05-29 23:30:18', '2017-05-29 23:30:18'),
 (3, 'Owner', 'owner@mail.com', '$2y$10$dw1VP7w4LlzL4t2NkJFkdu7XyvMgKuEynTaoFQEXPpnF9fFlrGq.S', '0857366487', 'Jalan Penarungan', 'Gianyar', 1, 2, 'qir3OexVXySqdhWxKSJj2tfhYzOObbcl42w8sVZCWknaAhnZTIDhkB6rkyZq', '2017-05-29 23:53:42', '2017-05-29 23:54:29'),
 (4, 'Member Baru', 'member@mail.com', '$2y$10$Wxj0e39m8PM/c7EA1t7WPOjFD1.HwpN8CblQVUfT4dzHjoN5vfmCu', '086734747', 'Jalan Wisnu Marga Belayu No 19', 'Denpasar', 1, 3, 'wh2Zll3Afq3Ulhwg3WXK0a98SgrwIpRGE9uGF5sLMvQIVGSS2KRJApi3ld4I', '2017-05-30 00:00:40', '2017-06-07 21:02:04');

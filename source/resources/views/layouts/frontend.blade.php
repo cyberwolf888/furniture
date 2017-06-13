@@ -69,116 +69,16 @@
                 <nav>
                     <ul>
                         <li class="@if (str_is('home', Route::currentRouteName())) active @endif"><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="#">element</a>
+                        <li class="@if (str_is('frontend.category', Route::currentRouteName())) active @endif"><a href="#">Category</a>
                             <ul class="sub-menu">
-                                <li><a href="#">Header</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="header-1.html">Header 1</a></li>
-                                        <li><a href="header-2.html">Header 2</a></li>
-                                        <li><a href="header-3.html">Header 3</a></li>
-                                        <li><a href="header-4.html">Header 4</a></li>
-                                        <li><a href="header-5.html">Header 5</a></li>
-                                        <li><a href="header-6.html">Header 6</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Footer</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="footer-1.html">Footer 1</a></li>
-                                        <li><a href="footer-2.html">Footer 2</a></li>
-                                        <li><a href="footer-3.html">Footer 3</a></li>
-                                        <li><a href="footer-4.html">Footer 4</a></li>
-                                        <li><a href="footer-5.html">Footer 5</a></li>
-                                        <li><a href="footer-6.html">Footer 6</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="alerts.html">Alerts</a></li>
-                                <li><a href="banner.html">Banner</a></li>
-                                <li><a href="button.html">Button</a></li>
-                                <li><a href="collapse.html">Collapse</a></li>
-                                <li><a href="progress.html">Progress bar</a></li>
-                                <li><a href="service.html">Service</a></li>
-                                <li><a href="tab.html">Tab</a></li>
-                                <li><a href="team.html">Team</a></li>
-                                <li><a href="image-gallery.html">Image gallery</a></li>
+                                @foreach(\App\Models\Category::all() as $category)
+                                <li><a href="{{ route('frontend.category',base64_encode($category->id)) }}">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="shop.html">Shop</a>
-                            <div class="mega-menu">
-                                <ul>
-                                    <li><a href="#">table's</a></li>
-                                    <li><a href="#">Blazers</a></li>
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Collections</a></li>
-                                    <li><a href="#">T-Shirts</a></li>
-                                    <li><a href="#">jens pant’s</a></li>
-                                    <li><a href="#">sports shoes</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">chair's</a></li>
-                                    <li><a href="#">Blazers</a></li>
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Collections</a></li>
-                                    <li><a href="#">T-Shirts</a></li>
-                                    <li><a href="#">jens pant’s</a></li>
-                                    <li><a href="#">sports shoes</a></li>
-                                </ul>
-                                <ul>
-                                    <li><a href="#">accessaories</a></li>
-                                    <li><a href="#">Blazers</a></li>
-                                    <li><a href="#">Jackets</a></li>
-                                    <li><a href="#">Collections</a></li>
-                                    <li><a href="#">T-Shirts</a></li>
-                                    <li><a href="#">jens pant’s</a></li>
-                                    <li><a href="#">sports shoes</a></li>
-                                </ul>
-                                <div class="menu-banner">
-                                    <a href="#"><img src="{{ url('assets/frontend') }}/img/menu-banner.jpg" alt="" /></a>
-                                </div>
-                            </div>
-                        </li>
-                        <li><a href="#">pages</a>
-                            <ul class="sub-menu">
-                                <li><a href="#">Shop pages</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="shop.html">Shop grid</a></li>
-                                        <li><a href="shop-list.html">Shop list</a></li>
-                                        <li><a href="shop-left-sidebar.html">Shop grid left sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop grid right sidebar</a></li>
-                                        <li><a href="shop-list-left-sidebar.html">Shop list Left sidebar</a></li>
-                                        <li><a href="shop-list-right-sidebar.html">Shop list right sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Product details</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="product-details-1.html">Product details V1</a></li>
-                                        <li><a href="product-details-2.html">Product details V2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Blog</a>
-                                    <ul class="sub-menu">
-                                        <li><a href="blog.html">Blog default</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="checkout.html">Check out</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="404.html">404</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html">blog</a>
-                            <ul class="sub-menu">
-                                <li><a href="blog.html">Blog default</a></li>
-                                <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                <li><a href="blog-details.html">Blog details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">contact</a></li>
+                        <li class="@if (str_is('frontend.hotsales', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.hotsales') }}">Hot Sales</a></li>
+                        <li class="@if (str_is('frontend.newitem', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.newitem') }}">New Item</a></li>
+                        <li class="@if (str_is('frontend.contact', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.contact') }}">contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -189,12 +89,19 @@
             <div class="account-menu account-menu-1 float-right">
                 <button data-toggle="dropdown" class="acc-menu-toggle"><i class="zmdi zmdi-settings"></i></button>
                 <ul class="acc-menu-dropdown dropdown-menu right">
-                    <li><a href="#">account</a></li>
-                    <li><a href="#">check out</a></li>
-                    <li><a href="#">shop</a></li>
-                    <li><a href="#">wishlist</a></li>
-                    <li><a href="#">log in</a></li>
-                    <li><a href="#">cart</a></li>
+                    @if(!Auth::check())
+                    <li><a href="{{ url('login') }}">login</a></li>
+                        <li><a href="{{ url('register') }}">Register</a></li>
+                    @else
+                    <li><a href="{{ route('member.dashboard') }}">My Account</a></li>
+                    <li>
+                        <a href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+
+                    @endif
                 </ul>
             </div>
             <!-- Mini Cart -->
@@ -229,8 +136,8 @@
             <div class="header-search header-search-1 hidden-xs float-right">
                 <button data-toggle="dropdown" class="search-toggle" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
                 <div class="search-dropdown dropdown-menu right">
-                    <form action="#">
-                        <input type="text" placeholder="Search Product...">
+                    <form action="{{ route('frontend.search') }}">
+                        <input type="text" placeholder="Search Product..." name="keywords" required>
                     </form>
                 </div>
             </div>
@@ -240,127 +147,17 @@
             <div class="mobile-menu mobile-menu-1">
                 <nav>
                     <ul>
-                        <li class="active"><a href="index.html">home</a>
+                        <li class="@if (str_is('home', Route::currentRouteName())) active @endif"><a href="{{ route('home') }}">Home</a></li>
+                        <li class="@if (str_is('frontend.category', Route::currentRouteName())) active @endif"><a href="#">Category</a>
                             <ul>
-                                <li><a href="index.html">Home version one</a></li>
-                                <li><a href="index-2.html">Home version two</a></li>
-                                <li><a href="index-box.html">Home one box</a></li>
-                                <li><a href="index-2-box.html">Home two box</a></li>
-                                <li><a href="index-text-1.html">Home text effect 1</a></li>
-                                <li><a href="index-text-2.html">Home text effect 2</a></li>
-                                <li><a href="index-text-3.html">Home text effect 3</a></li>
+                                @foreach(\App\Models\Category::all() as $category)
+                                    <li><a href="{{ route('frontend.category',base64_encode($category->id)) }}">{{ $category->name }}</a></li>
+                                @endforeach
                             </ul>
                         </li>
-                        <li><a href="#">element</a>
-                            <ul>
-                                <li><a href="#">Header</a>
-                                    <ul>
-                                        <li><a href="header-1.html">Header 1</a></li>
-                                        <li><a href="header-2.html">Header 2</a></li>
-                                        <li><a href="header-3.html">Header 3</a></li>
-                                        <li><a href="header-4.html">Header 4</a></li>
-                                        <li><a href="header-5.html">Header 5</a></li>
-                                        <li><a href="header-6.html">Header 6</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Footer</a>
-                                    <ul>
-                                        <li><a href="footer-1.html">Footer 1</a></li>
-                                        <li><a href="footer-2.html">Footer 2</a></li>
-                                        <li><a href="footer-3.html">Footer 3</a></li>
-                                        <li><a href="footer-4.html">Footer 4</a></li>
-                                        <li><a href="footer-5.html">Footer 5</a></li>
-                                        <li><a href="footer-6.html">Footer 6</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="alerts.html">Alerts</a></li>
-                                <li><a href="banner.html">Banner</a></li>
-                                <li><a href="button.html">Button</a></li>
-                                <li><a href="collapse.html">Collapse</a></li>
-                                <li><a href="progress.html">Progress bar</a></li>
-                                <li><a href="service.html">Service</a></li>
-                                <li><a href="tab.html">Tab</a></li>
-                                <li><a href="team.html">Team</a></li>
-                                <li><a href="image-gallery.html">Image gallery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="shop.html">Shop</a>
-                            <ul>
-                                <li><a href="#">table's</a>
-                                    <ul>
-                                        <li><a href="#">Blazers</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Collections</a></li>
-                                        <li><a href="#">T-Shirts</a></li>
-                                        <li><a href="#">jens pant’s</a></li>
-                                        <li><a href="#">sports shoes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">chair's</a>
-                                    <ul>
-                                        <li><a href="#">Blazers</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Collections</a></li>
-                                        <li><a href="#">T-Shirts</a></li>
-                                        <li><a href="#">jens pant’s</a></li>
-                                        <li><a href="#">sports shoes</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">accessaories</a>
-                                    <ul>
-                                        <li><a href="#">Blazers</a></li>
-                                        <li><a href="#">Jackets</a></li>
-                                        <li><a href="#">Collections</a></li>
-                                        <li><a href="#">T-Shirts</a></li>
-                                        <li><a href="#">jens pant’s</a></li>
-                                        <li><a href="#">sports shoes</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">pages</a>
-                            <ul>
-                                <li><a href="#">Shop pages</a>
-                                    <ul>
-                                        <li><a href="shop.html">Shop grid</a></li>
-                                        <li><a href="shop-list.html">Shop list</a></li>
-                                        <li><a href="shop-left-sidebar.html">Shop grid left sidebar</a></li>
-                                        <li><a href="shop-right-sidebar.html">Shop grid right sidebar</a></li>
-                                        <li><a href="shop-list-left-sidebar.html">Shop list Left sidebar</a></li>
-                                        <li><a href="shop-list-right-sidebar.html">Shop list right sidebar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Product details</a>
-                                    <ul>
-                                        <li><a href="product-details-1.html">Product details V1</a></li>
-                                        <li><a href="product-details-2.html">Product details V2</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#">Blog</a>
-                                    <ul>
-                                        <li><a href="blog.html">Blog default</a></li>
-                                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                        <li><a href="blog-details.html">Blog details</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="checkout.html">Check out</a></li>
-                                <li><a href="wishlist.html">Wishlist</a></li>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="contact.html">Contact</a></li>
-                                <li><a href="404.html">404</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="blog.html">blog</a>
-                            <ul>
-                                <li><a href="blog.html">Blog default</a></li>
-                                <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                <li><a href="blog-details.html">Blog details</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">contact</a></li>
+                        <li class="@if (str_is('frontend.hotsales', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.hotsales') }}">Hot Sales</a></li>
+                        <li class="@if (str_is('frontend.newitem', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.newitem') }}">New Item</a></li>
+                        <li class="@if (str_is('frontend.contact', Route::currentRouteName())) active @endif"><a href="{{ route('frontend.contact') }}">contact</a></li>
                     </ul>
                 </nav>
             </div>
@@ -405,7 +202,7 @@
             <div class="row">
                 <div class="footer-about col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <img src="{{ url('assets/frontend') }}/img/logo-2.png" alt="" />
-                    <p>Lorem ipsum dolor sit amet, consecteir our adipisicing elit, sed do eiusmod tempor the incididunt ut labore et dolore magnaa liqua. Ut enim minimn.</p>
+                    <p>Kami adalah toko furniture yang memberikan harga terbaik dengan kualitas terbaik untuk anda.</p>
                     <div class="footer-social fix">
                         <a href="#"><i class="zmdi zmdi-facebook"></i></a>
                         <a href="#"><i class="zmdi zmdi-instagram"></i></a>
@@ -417,36 +214,35 @@
                 <div class="footer-information col-lg-3 col-md-2 col-sm-6 col-xs-12">
                     <h4>Information</h4>
                     <ul>
-                        <li><a href="#">Hot Sale</a></li>
-                        <li><a href="#">best Seller</a></li>
-                        <li><a href="#">Suppliers</a></li>
-                        <li><a href="#">Our Store</a></li>
-                        <li><a href="#">Deal of The Days</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Hot Sales</a></li>
+                        <li><a href="#">New Item</a></li>
+                        <li><a href="#">Contact</a></li>
+
                     </ul>
                 </div>
                 <div class="footer-account col-lg-3 col-md-2 col-sm-6 col-xs-12">
                     <h4>my accounts</h4>
                     <ul>
-                        <li><a href="#">My Account</a></li>
-                        <li><a href="#">My Wishlist</a></li>
-                        <li><a href="#">My Cart</a></li>
-                        <li><a href="#">Sign In</a></li>
-                        <li><a href="#">Check out</a></li>
+                        <li><a href="{{ route('member.dashboard') }}">My Account</a></li>
+                        <li><a href="{{ route('member.transaction.manage') }}">My Transaction</a></li>
+                        <li><a href="{{ route('member.profile.index') }}">My Profile</a></li>
+                        <li><a href="#">Login</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">
                     <h4>Contact us</h4>
                     <div class="sin-footer-contact fix">
                         <i class="zmdi zmdi-pin"></i>
-                        <span>House No 08, Road No 08, Din Bari, Dhaka, Bangladesh</span>
+                        <span>Jalan Raya Krebokan No.888</span>
                     </div>
                     <div class="sin-footer-contact fix">
                         <i class="zmdi zmdi-email"></i>
-                        <span>Username@gmail.com <br />Damo@gmail.com</span>
+                        <span>Username@gmail.com</span>
                     </div>
                     <div class="sin-footer-contact fix">
                         <i class="zmdi zmdi-phone"></i>
-                        <span>+660 256 24857 <br />+660 256 24857</span>
+                        <span>+660 256 24857</span>
                     </div>
                 </div>
             </div>

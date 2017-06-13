@@ -1,68 +1,66 @@
-@extends('layouts.app')
+@extends('layouts.frontend')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
-
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+    <!-- Page Banner Area
+    ============================================ -->
+    <div id="page-banner" class="page-banner-area top-header-space-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="page-banner text-center"><h2>Login</h2></div>
+                    <ul class="breadcrumbs">
+                        <li><a href="{{ route('home') }}">home</a></li>
+                        <li><span>Login</span></li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <!-- Demo Content Area
+    ============================================ -->
+    <div class="page-area pb-90 pt-90">
+        <div class="container">
+            @if (count($errors) > 0)
+                <div class="row">
+                    <div class="col-md-offset-4 col-lg-4  col-md-4 col-xs-12">
+                        <div class="alert alert-danger">
+                            <button class="close" data-dismiss="alert"><span>×</span></button>
+                            <strong>Oh Snap!</strong> <br>
+                            @foreach ($errors->all() as $error)
+                                {{ $error }}<br>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
+            <div class="row">
+                <div class="contact-form col-md-offset-4 col-lg-4  col-md-4 col-xs-12">
+                    <h3>Login Form</h3>
+                    <form id="payment-form" action="" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="input-box-2 fix">
+                            <div class="input-box float-left" style="width: 100%">
+                                <input name="email" placeholder="email" type="email" value="{{ old('email') }}" required autofocus>
+                            </div>
+                        </div>
+                        <div class="input-box-2 fix">
+                            <div class="input-box float-left" style="width: 100%">
+                                <input name="password" placeholder="password" type="password" required>
+                            </div>
+                        </div>
+                        <div class="input-box submit-box fix">
+                            <input value="Send Message" type="submit">
+                        </div>
+                    </form>
+                    <p class="form-messege"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
+
+@push('plugin_scripts')
+<!-- Particles Active JS
+============================================ -->
+<script src="{{ url('assets/frontend') }}/js/app.js"></script>
+@endpush

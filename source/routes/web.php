@@ -27,6 +27,12 @@ Route::get('/invoice/{id}/print', 'HomeController@invoice_print')->name('fronten
 Route::get('/payment/{id}', 'HomeController@payment')->name('frontend.payment');
 Route::post('/payment/{id}', 'HomeController@payment_proses')->name('frontend.payment.proses');
 Route::post('/subscribe', 'HomeController@subscribe')->name('frontend.subscribe');
+Route::get('/category/{id}', 'HomeController@category')->name('frontend.category');
+Route::get('/hotsales', 'HomeController@hot_sales')->name('frontend.hotsales');
+Route::get('/newitem', 'HomeController@new_item')->name('frontend.newitem');
+Route::get('/contact', 'HomeController@contact')->name('frontend.contact');
+Route::get('/search', 'HomeController@search')->name('frontend.search');
+
 
 
 //Backend

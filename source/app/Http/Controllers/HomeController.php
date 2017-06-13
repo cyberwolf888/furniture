@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Product;
 use App\Models\ProductDetail;
@@ -21,6 +22,52 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    //Category
+    public function category($id)
+    {
+        $id = base64_decode($id);
+        $category = Category::find($id);
+        $products = Product::where('category_id',$id)->get();
+
+        return view('category',['category'=>$category,'products'=>$products]);
+
+    }
+
+    //Hot Sales
+    public function hot_sales()
+    {
+        $products = Product::where('isSale',1)->get();
+
+        return view('hotsales',['products'=>$products]);
+    }
+
+    //New Item
+    public function new_item()
+    {
+        $products = Product::orderBy('created_at','desc')->limit(16)->get();
+
+        return view('newitem',['products'=>$products]);
+    }
+
+    //Contact
+    public function contact()
+    {
+        return view('contact');
+    }
+
+    //Search
+    public function search(Request $request)
+    {
+        $products = Product::where('available',1)
+            ->where('name', 'like', '%'.$request->keywords.'%')
+            ->orderBy('id', 'desc')
+            ->get();
+        return view('search',[
+            'products'=>$products,
+            'keywords'=>$request->keywords
+        ]);
     }
 
     //Product

@@ -9,7 +9,7 @@
                 <div class="col-xs-12">
                     <div class="page-banner text-center"><h2>header 1</h2></div>
                     <ul class="breadcrumbs">
-                        <li><a href="#">home</a></li>
+                        <li><a href="{{ route('home') }}">home</a></li>
                         <li><span>header 1</span></li>
                     </ul>
                 </div>

@@ -30,7 +30,7 @@
                             </div>
                             <div class="content fix">
                                 <h4>FREE SHOP ALL ORDER</h4>
-                                <p>Lorem ipsum dolor sit amet, onsectetur adipisicing</p>
+                                <p>Gratis ongkos kirim untuk daerah Denpasar & Badung</p>
                             </div>
                         </div>
                         <!-- Single Shipping -->
@@ -39,8 +39,8 @@
                                 <i class="zmdi zmdi-balance-wallet"></i>
                             </div>
                             <div class="content fix">
-                                <h4>100% MONEY BACK</h4>
-                                <p>Lorem ipsum dolor sit amet, onsectetur adipisicing</p>
+                                <h4>Best Price</h4>
+                                <p>Kami menawarkan harga terbaik untuk anda</p>
                             </div>
                         </div>
                         <!-- Single Shipping -->
@@ -50,7 +50,7 @@
                             </div>
                             <div class="content fix">
                                 <h4>24/7 SUPPORT</h4>
-                                <p>Lorem ipsum dolor sit amet, onsectetur adipisicing</p>
+                                <p>Layanan customer service setiap saat</p>
                             </div>
                         </div>
                     </div>

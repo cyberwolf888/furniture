@@ -28,7 +28,7 @@
                                 </ul> -->
                             </div>
                             <span class="card-title">New Member</span>
-                            <span class="stats-counter"><span class="counter">100</span><small>This month</small></span>
+                            <span class="stats-counter"><span class="counter">{{ $member }}</span><small>This month</small></span>
                         </div>
                         <div class="progress stats-card-progress">
                             <div class="determinate" style="width: 100%"></div>
