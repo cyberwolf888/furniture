@@ -57,6 +57,11 @@ class HomeController extends Controller
         return view('contact');
     }
 
+    public function contact_proses(Request $request)
+    {
+        return "Your message has been sent.";
+    }
+
     //Search
     public function search(Request $request)
     {

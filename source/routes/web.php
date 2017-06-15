@@ -31,6 +31,7 @@ Route::get('/category/{id}', 'HomeController@category')->name('frontend.category
 Route::get('/hotsales', 'HomeController@hot_sales')->name('frontend.hotsales');
 Route::get('/newitem', 'HomeController@new_item')->name('frontend.newitem');
 Route::get('/contact', 'HomeController@contact')->name('frontend.contact');
+Route::post('/contact', 'HomeController@contact_proses')->name('frontend.contact.proses');
 Route::get('/search', 'HomeController@search')->name('frontend.search');
 
 
