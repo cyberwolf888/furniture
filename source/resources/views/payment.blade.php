@@ -47,17 +47,15 @@
                     <div class="sin-con-info fix">
                         <div class="content fix">
                             <p class="name">Bank Central Asia (BCA)</p>
-                            <p class="title">MANAGER of STUFF</p>
-                            <p class="info"><i class="zmdi zmdi-phone-in-talk"></i><span>Phone : +061012345678</span></p>
-                            <p class="info"><i class="zmdi zmdi-email"></i><span>anikamollik@outlook.com</span></p>
+                            <p class="title">PT. D&G Furniture</p>
+                            <p class="info"><span>7725142048</span></p>
                         </div>
                     </div>
                     <div class="sin-con-info fix">
                         <div class="content fix">
                             <p class="name">Bank Mandiri</p>
-                            <p class="title">CEO of STUFF</p>
-                            <p class="info"><i class="zmdi zmdi-phone-in-talk"></i><span>Phone : +061012345678</span></p>
-                            <p class="info"><i class="zmdi zmdi-email"></i><span>anikamollik@outlook.com</span></p>
+                            <p class="title">PT. D&G Furniture</p>
+                            <p class="info"><span>1706190052107</span></p>
                         </div>
                     </div>
 

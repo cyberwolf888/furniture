@@ -66,7 +66,7 @@
                         </div>
                         <div class="input-box-2 fix">
                             <div class="input-box float-left" style="width: 100%">
-                                <input name="password" placeholder="password" type="Password" required>
+                                <input name="password" placeholder="Password" type="Password" required>
                             </div>
                         </div>
                         <div class="input-box-2 fix">
@@ -75,7 +75,7 @@
                             </div>
                         </div>
                         <div class="input-box submit-box fix">
-                            <input value="Send Message" type="submit">
+                            <input value="Register" type="submit">
                         </div>
                     </form>
                     <p class="form-messege"></p>

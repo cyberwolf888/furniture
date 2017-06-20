@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="input-box submit-box fix">
-                            <input value="Send Message" type="submit">
+                            <input value="Login" type="submit">
                         </div>
                     </form>
                     <p class="form-messege"></p>

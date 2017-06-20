@@ -134,6 +134,7 @@
                 </div>
             </div>
             <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
+                <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('home') }}"><i class="material-icons">home</i>Home</a></li>
                 <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('member.dashboard') }}"><i class="material-icons">settings_input_svideo</i>Dashboard</a></li>
                 <li class="no-padding"><a class="waves-effect waves-grey" href="{{ route('member.transaction.manage') }}"><i class="material-icons">shopping_cart</i>Transaction</a></li>
                 <li class="no-padding">

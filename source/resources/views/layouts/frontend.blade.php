@@ -214,10 +214,10 @@
                 <div class="footer-information col-lg-3 col-md-2 col-sm-6 col-xs-12">
                     <h4>Information</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Hot Sales</a></li>
-                        <li><a href="#">New Item</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('frontend.hotsales') }}">Hot Sales</a></li>
+                        <li><a href="{{ route('frontend.newitem') }}">New Item</a></li>
+                        <li><a href="{{ route('frontend.contact') }}">Contact</a></li>
 
                     </ul>
                 </div>
@@ -227,7 +227,7 @@
                         <li><a href="{{ route('member.dashboard') }}">My Account</a></li>
                         <li><a href="{{ route('member.transaction.manage') }}">My Transaction</a></li>
                         <li><a href="{{ route('member.profile.index') }}">My Profile</a></li>
-                        <li><a href="#">Login</a></li>
+                        <li><a href="{{ url('login') }}">Login</a></li>
                     </ul>
                 </div>
                 <div class="footer-contact-2 col-lg-3 col-md-4 col-sm-6 col-xs-12">

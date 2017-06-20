@@ -76,19 +76,31 @@
             </div>
         </div>
         @if($model->payment != null)
-        <div class="row">
-            <div class="col s12">
-                <div class="page-title">Detail Payment</div>
-            </div>
-            <div class="col s12 m12 12">
-                <div class="card">
-                    <div class="card-content">
-                        <img src="{{ url('storage/app/images/payment/'.$model->payment->image) }}" style="width: 600px; height: 600px;">
-                    </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="page-title">Detail Payment</div>
                 </div>
+                <div class="col s12 m12 12">
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="row">
+                                @foreach($model->payment as $payment)
+                                    <div class="col s4 m4 ">
+                                        @if($payment->status == 0 && $model->status == \App\Models\Transaction::WAITING_VERIFIED)
+                                            <a class="waves-effect waves-light btn green modal-trigger" href="#modal_approve" onclick="event.preventDefault();document.getElementById('payment_id').value = '<?= $payment->id ?>' ;"><i class="material-icons left">done</i>Approve</a>
+                                            <a class="waves-effect waves-light btn red modal-trigger" href="#modal_decline" onclick="event.preventDefault();document.getElementById('payment_id').value = '<?= $payment->id ?>' ;"><i class="material-icons left">clear</i>Decline</a>
+                                        @endif
+                                        <br><br>
+                                        <a href="{{ url('assets/img/payment/'.$payment->image) }}" target="_blank"><img src="{{ url('assets/img/payment/'.$payment->image) }}" style="width: 300px; height: 300px;"></a>
+                                    </div>
+                                @endforeach
+                            </div>
 
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
         @endif
     </main>
 @endsection

@@ -29,7 +29,7 @@ class HomeController extends Controller
     {
         $id = base64_decode($id);
         $category = Category::find($id);
-        $products = Product::where('category_id',$id)->get();
+        $products = Product::where('category_id',$id)->where('available',1)->get();
 
         return view('category',['category'=>$category,'products'=>$products]);
 
@@ -38,7 +38,7 @@ class HomeController extends Controller
     //Hot Sales
     public function hot_sales()
     {
-        $products = Product::where('isSale',1)->get();
+        $products = Product::where('isSale',1)->where('available',1)->get();
 
         return view('hotsales',['products'=>$products]);
     }
@@ -46,7 +46,7 @@ class HomeController extends Controller
     //New Item
     public function new_item()
     {
-        $products = Product::orderBy('created_at','desc')->limit(16)->get();
+        $products = Product::where('available',1)->orderBy('created_at','desc')->limit(16)->get();
 
         return view('newitem',['products'=>$products]);
     }
@@ -67,6 +67,7 @@ class HomeController extends Controller
     {
         $products = Product::where('available',1)
             ->where('name', 'like', '%'.$request->keywords.'%')
+            ->where('available',1)
             ->orderBy('id', 'desc')
             ->get();
         return view('search',[
