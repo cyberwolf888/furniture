@@ -39,6 +39,16 @@
     <!-- Modernizer JS
     ============================================ -->
     <script src="{{ url('assets/frontend') }}/js/vendor/modernizr-2.8.3.min.js"></script>
+    <style>
+        .logo {
+            display: inline-block;
+            margin: 20px 0 44px;
+            vertical-align: top;
+        }
+        .stick .logo {
+            margin: 10px 0 24px;
+        }
+    </style>
 
 </head>
 <body>

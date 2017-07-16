@@ -51,7 +51,7 @@
                             </div>
                             <div class="row">
                                 <div class="input-field col s12">
-                                    {!! Form::number('discount', $model->discount == null ? 0: null,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
+                                    {!! Form::number('discount', $model->discount == null ? 0: $model->discount,['class'=>'validate','required'=>'','aria-required'=>'true']) !!}
                                     {!! Form::label('discount', 'Discount (%)', ['data-error' => 'wrong','data-success'=>'right']) !!}
                                 </div>
                             </div>

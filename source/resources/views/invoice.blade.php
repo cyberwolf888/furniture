@@ -208,8 +208,10 @@
 
                     </div>
                     <br><br>
-                    <center><a class="btn btn-primary" href="#">Continue to payment</a>
-                        <a class="btn btn-primary" href="{{ route('frontend.invoice.print',base64_encode($transaction->id)) }}" target="_blank">Print Invoice</a> </center>
+                    <center>
+                        <a class="btn btn-primary" href="{{ route('frontend.payment',base64_encode($transaction->id)) }}">Continue to payment</a>
+                        <a class="btn btn-primary" href="{{ route('frontend.invoice.print',base64_encode($transaction->id)) }}" target="_blank">Print Invoice</a>
+                    </center>
                     <br><br><br>
                 </div>
             </div>
